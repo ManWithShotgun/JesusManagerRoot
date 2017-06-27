@@ -113,11 +113,11 @@ public class JFXDecorator extends VBox {
         setPickOnBounds(false);
         this.getStyleClass().add("jfx-decorator");
 
-        SVGGlyph full = new SVGGlyph(0,
-            "FULLSCREEN",
-            "M598 214h212v212h-84v-128h-128v-84zM726 726v-128h84v212h-212v-84h128zM214 426v-212h212v84h-128v128h-84zM298 598v128h128v84h-212v-212h84z",
-            Color.WHITE);
-        full.setSize(16, 16);
+//        SVGGlyph full = new SVGGlyph(0,
+//            "FULLSCREEN",
+//            "M598 214h212v212h-84v-128h-128v-84zM726 726v-128h84v212h-212v-84h128zM214 426v-212h212v84h-128v128h-84zM298 598v128h128v84h-212v-212h84z",
+//            Color.WHITE);
+//        full.setSize(16, 16);
         SVGGlyph minus = new SVGGlyph(0,
             "MINUS",
             "M804.571 420.571v109.714q0 22.857-16 38.857t-38.857 16h-694.857q-22.857 0-38.857-16t-16-38.857v-109.714q0-22.857 16-38.857t38.857-16h694.857q22.857 0 38.857 16t16 38.857z",
@@ -140,13 +140,13 @@ public class JFXDecorator extends VBox {
             Color.WHITE);
         close.setSize(12, 12);
 
-        JFXButton btnFull = new JFXButton();
-        btnFull.getStyleClass().add("jfx-decorator-button");
-        btnFull.setCursor(Cursor.HAND);
-        btnFull.setOnAction((action) -> primaryStage.setFullScreen(!primaryStage.isFullScreen()));
-        btnFull.setGraphic(full);
-        btnFull.setTranslateX(-30);
-        btnFull.setRipplerFill(Color.WHITE);
+//        JFXButton btnFull = new JFXButton();
+//        btnFull.getStyleClass().add("jfx-decorator-button");
+//        btnFull.setCursor(Cursor.HAND);
+//        btnFull.setOnAction((action) -> primaryStage.setFullScreen(!primaryStage.isFullScreen()));
+//        btnFull.setGraphic(full);
+//        btnFull.setTranslateX(-30);
+//        btnFull.setRipplerFill(Color.WHITE);
 
         JFXButton btnClose = new JFXButton();
         btnClose.getStyleClass().add("jfx-decorator-button");
@@ -154,6 +154,7 @@ public class JFXDecorator extends VBox {
         btnClose.setOnAction((action) -> onCloseButtonAction.get().run());
         btnClose.setGraphic(close);
         btnClose.setRipplerFill(Color.WHITE);
+        btnClose.setFocusTraversable(false);
 
         JFXButton btnMin = new JFXButton();
         btnMin.getStyleClass().add("jfx-decorator-button");
@@ -161,11 +162,13 @@ public class JFXDecorator extends VBox {
         btnMin.setOnAction((action) -> primaryStage.setIconified(true));
         btnMin.setGraphic(minus);
         btnMin.setRipplerFill(Color.WHITE);
+        btnMin.setFocusTraversable(false);
 
         btnMax = new JFXButton();
         btnMax.getStyleClass().add("jfx-decorator-button");
         btnMax.setCursor(Cursor.HAND);
         btnMax.setRipplerFill(Color.WHITE);
+        btnMax.setFocusTraversable(false);
         btnMax.setOnAction((action) -> {
             if (!isCustomMaximize()) {
                 primaryStage.setMaximized(!primaryStage.isMaximized());
@@ -224,6 +227,7 @@ public class JFXDecorator extends VBox {
         buttonsContainer.setPadding(new Insets(4));
         buttonsContainer.setAlignment(Pos.CENTER_RIGHT);
         // maximize/restore the window on header double click
+        // большое/малое окно по дабл клику по полосе с свернуть закрыть и т.д.
         buttonsContainer.addEventHandler(MouseEvent.MOUSE_CLICKED, (mouseEvent) -> {
             if (mouseEvent.getClickCount() == 2) {
                 btnMax.fire();
@@ -231,9 +235,9 @@ public class JFXDecorator extends VBox {
         });
         // customize decorator buttons
         List<JFXButton> btns = new ArrayList<>();
-        if (fullScreen) {
-            btns.add(btnFull);
-        }
+//        if (fullScreen) {
+//            btns.add(btnFull);
+//        }
         if (min) {
             btns.add(btnMin);
         }
@@ -250,6 +254,7 @@ public class JFXDecorator extends VBox {
             }
         });
         buttonsContainer.setMinWidth(180);
+
         contentPlaceHolder.getStyleClass().add("jfx-decorator-content-container");
         contentPlaceHolder.setMinSize(0, 0);
         contentPlaceHolder.getChildren().add(node);
