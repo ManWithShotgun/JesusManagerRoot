@@ -37,7 +37,7 @@ public class TabsDemo extends Application {
         tab.setContent(new Label(TAB_0));
 
         tabPane.getTabs().add(tab);
-        tabPane.setPrefSize(300, 200);
+        tabPane.setPrefSize(500, 200);
         Tab tab1 = new Tab();
         tab1.setText(TAB_01);
         tab1.setContent(new Label(TAB_01));

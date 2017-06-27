@@ -1,9 +1,9 @@
-package jesus.manager;
+package ru.jesus.manager;
 
 import com.jfoenix.controls.JFXDecorator;
 import com.jfoenix.svg.SVGGlyphLoader;
 import demos.MainDemo;
-import demos.gui.main.MainController;
+
 import io.datafx.controller.flow.Flow;
 import io.datafx.controller.flow.container.DefaultFlowContainer;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
@@ -12,13 +12,14 @@ import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ru.jesus.manager.gui.main.MainController;
 
 import java.io.IOException;
 
 /**
  * Created by ILIA on 27.06.2017.
  */
-public class Mian extends Application {
+public class Main extends Application {
 
     @FXMLViewFlowContext
     private ViewFlowContext flowContext;
@@ -46,7 +47,7 @@ public class Mian extends Application {
 
         JFXDecorator decorator = new JFXDecorator(stage, container.getView());
         decorator.setCustomMaximize(true);
-        Scene scene = new Scene(decorator, 800, 850);
+        Scene scene = new Scene(decorator, 1200, 850);
         final ObservableList<String> stylesheets = scene.getStylesheets();
         stylesheets.addAll(MainDemo.class.getResource("/css/jfoenix-fonts.css").toExternalForm(),
                 MainDemo.class.getResource("/css/jfoenix-design.css").toExternalForm(),

@@ -1,8 +1,6 @@
-package demos.gui.main;
+package ru.jesus.manager.gui.main;
 
 import com.jfoenix.controls.*;
-import com.jfoenix.controls.JFXPopup.PopupHPosition;
-import com.jfoenix.controls.JFXPopup.PopupVPosition;
 import demos.datafx.ExtendedAnimatedFlowContainer;
 import demos.gui.sidemenu.SideMenuController;
 import demos.gui.uicomponents.ButtonController;
@@ -22,8 +20,11 @@ import javax.annotation.PostConstruct;
 
 import static io.datafx.controller.flow.container.ContainerAnimations.SWIPE_LEFT;
 
-@ViewController(value = "/fxml/Main.fxml", title = "Material Design Example")
-public final class MainController {
+/**
+ * Created by ILIA on 27.06.2017.
+ */
+@ViewController(value = "/fxml/jesus/Main.fxml", title = "Jesus Manager")
+public class MainController {
 
     @FXMLViewFlowContext
     private ViewFlowContext context;
@@ -31,8 +32,8 @@ public final class MainController {
     @FXML
     private StackPane root;
 
-    @FXML
-    private StackPane titleBurgerContainer;
+//    @FXML
+//    private StackPane titleBurgerContainer;
     @FXML
     private JFXHamburger titleBurger;
 
@@ -61,23 +62,23 @@ public final class MainController {
             animation.setRate(-1);
             animation.play();
         });
-        titleBurgerContainer.setOnMouseClicked(e -> {
-            if (drawer.isHidden() || drawer.isHiding()) {
-                drawer.open();
-            } else {
-                drawer.close();
-            }
-        });
+//        titleBurgerContainer.setOnMouseClicked(e -> {
+//            if (drawer.isHidden() || drawer.isHiding()) {
+//                drawer.open();
+//            } else {
+//                drawer.close();
+//            }
+//        });
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ui/popup/MainPopup.fxml"));
-        loader.setController(new InputController());
+        loader.setController(new demos.gui.main.MainController.InputController());
         toolbarPopup = new JFXPopup(loader.load());
 
         optionsBurger.setOnMouseClicked(e -> toolbarPopup.show(optionsBurger,
-                                                               PopupVPosition.TOP,
-                                                               PopupHPosition.RIGHT,
-                                                               -12,
-                                                               15));
+                JFXPopup.PopupVPosition.TOP,
+                JFXPopup.PopupHPosition.RIGHT,
+                -12,
+                15));
 
         // create the inner flow and content
         context = new ViewFlowContext();
@@ -95,7 +96,7 @@ public final class MainController {
         Flow sideMenuFlow = new Flow(SideMenuController.class);
         final FlowHandler sideMenuFlowHandler = sideMenuFlow.createHandler(context);
         drawer.setSidePane(sideMenuFlowHandler.start(new ExtendedAnimatedFlowContainer(containerAnimationDuration,
-                                                                                       SWIPE_LEFT)));
+                SWIPE_LEFT)));
     }
 
     public static final class InputController {
