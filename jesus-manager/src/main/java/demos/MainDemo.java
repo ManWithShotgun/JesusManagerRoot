@@ -3,6 +3,7 @@ package demos;
 import com.jfoenix.controls.JFXDecorator;
 import com.jfoenix.svg.SVGGlyphLoader;
 import demos.gui.main.MainController;
+import demos.gui.uicomponents.ButtonController;
 import io.datafx.controller.flow.Flow;
 import io.datafx.controller.flow.container.DefaultFlowContainer;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
@@ -10,6 +11,7 @@ import io.datafx.controller.flow.context.ViewFlowContext;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -33,6 +35,10 @@ public class MainDemo extends Application {
                 ioExc.printStackTrace();
             }
         }).start();
+
+        stage.setTitle("MainDemo");
+        // можно и так stage.getIcons().add(new Image("https://image.freepik.com/free-icon/xing_318-136409.jpg"));
+        stage.getIcons().add(new Image("/img/icon.png"));
 
         Flow flow = new Flow(MainController.class);
         DefaultFlowContainer container = new DefaultFlowContainer();

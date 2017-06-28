@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXPopup.PopupVPosition;
 import demos.datafx.ExtendedAnimatedFlowContainer;
 import demos.gui.sidemenu.SideMenuController;
 import demos.gui.uicomponents.ButtonController;
+import demos.gui.uicomponents.DialogController;
 import io.datafx.controller.ViewController;
 import io.datafx.controller.flow.Flow;
 import io.datafx.controller.flow.FlowHandler;
@@ -82,7 +83,7 @@ public final class MainController {
         // create the inner flow and content
         context = new ViewFlowContext();
         // set the default controller
-        Flow innerFlow = new Flow(ButtonController.class);
+        Flow innerFlow = new Flow(DialogController.class);
 
         final FlowHandler flowHandler = innerFlow.createHandler(context);
         context.register("ContentFlowHandler", flowHandler);
@@ -103,6 +104,7 @@ public final class MainController {
         private JFXListView<?> toolbarPopupList;
 
         // close application
+        //в MainPopup.fxml метод баиндится как #submit
         @FXML
         private void submit() {
             //если в правом выподпющем меню выбран элем с индексом 1 - выход

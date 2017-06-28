@@ -104,6 +104,7 @@ public class MainController {
         private JFXListView<?> toolbarPopupList;
 
         // close application
+        //в MainPopup.fxml метод баиндится как #submit
         @FXML
         private void submit() {
             //если в правом выподпющем меню выбран элем с индексом 1 - выход

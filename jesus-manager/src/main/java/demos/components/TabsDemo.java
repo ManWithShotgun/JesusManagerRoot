@@ -3,12 +3,14 @@ package demos.components;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTabPane;
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -30,7 +32,9 @@ public class TabsDemo extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Tabs");
 
-        JFXTabPane tabPane = new JFXTabPane();
+        TabPane tabPane = new TabPane();
+        tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+        //JFXTabPane tabPane = new JFXTabPane();
 
         Tab tab = new Tab();
         tab.setText(msg);

@@ -11,6 +11,7 @@ import io.datafx.controller.flow.context.ViewFlowContext;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import ru.jesus.manager.gui.main.MainController;
 
@@ -38,6 +39,10 @@ public class Main extends Application {
                 ioExc.printStackTrace();
             }
         }).start();
+
+        stage.setTitle("JesusManager");
+        // можно и так stage.getIcons().add(new Image("https://example.com/javaicon.png"));
+        stage.getIcons().add(new Image("/img/icon.png"));
 
         Flow flow = new Flow(MainController.class);
         DefaultFlowContainer container = new DefaultFlowContainer();
