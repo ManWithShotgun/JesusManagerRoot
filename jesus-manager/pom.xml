@@ -141,7 +141,7 @@
                         <configuration>
                             <headerType>gui</headerType>
                             <jar>target/jesus-manager-1.0-SNAPSHOT-shaded.jar</jar>
-                            <outfile>${project.build.directory}/hasCode.exe</outfile>
+                            <outfile>${project.build.directory}/JesusManager.exe</outfile>
                             <downloadUrl>http://java.com/download</downloadUrl>
                             <classPath>
                                 <mainClass>demos.MainDemo</mainClass>
@@ -156,13 +156,13 @@
                                 <fileVersion>1.0.0.0</fileVersion>
                                 <txtFileVersion>${project.version}</txtFileVersion>
                                 <fileDescription>${project.name}</fileDescription>
-                                <copyright>2012 hasCode.com</copyright>
+                                <copyright>2017 jesus.ru</copyright>
                                 <productVersion>1.0.0.0</productVersion>
                                 <txtProductVersion>1.0.0.0</txtProductVersion>
                                 <productName>${project.name}</productName>
-                                <companyName>hasCode.com</companyName>
-                                <internalName>hasCode</internalName>
-                                <originalFilename>hasCode.exe</originalFilename>
+                                <companyName>jesus.ru</companyName>
+                                <internalName>JesusManager</internalName>
+                                <originalFilename>JesusManager.exe</originalFilename>
                             </versionInfo>
                         </configuration>
                     </execution>

@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import ru.jesus.manager.tabs.Main;
 
 import javax.annotation.PostConstruct;
 
@@ -32,53 +33,53 @@ public class MainController {
     @FXML
     private StackPane root;
 
+    @FXML
+    private Main testMain;
 //    @FXML
-//    private StackPane titleBurgerContainer;
-    @FXML
-    private JFXHamburger titleBurger;
-
-    @FXML
-    private StackPane optionsBurger;
-    @FXML
-    private JFXRippler optionsRippler;
+//    private JFXHamburger titleBurger;
+//
+//    @FXML
+//    private StackPane optionsBurger;
+//    @FXML
+//    private JFXRippler optionsRippler;
     @FXML
     private JFXDrawer drawer;
 
-    private JFXPopup toolbarPopup;
+    //private JFXPopup toolbarPopup;
 
     /**
      * init fxml when loaded.
      */
     @PostConstruct
     public void init() throws Exception {
-        // init the title hamburger icon
-        drawer.setOnDrawerOpening(e -> {
-            final Transition animation = titleBurger.getAnimation();
-            animation.setRate(1);
-            animation.play();
-        });
-        drawer.setOnDrawerClosing(e -> {
-            final Transition animation = titleBurger.getAnimation();
-            animation.setRate(-1);
-            animation.play();
-        });
-//        titleBurgerContainer.setOnMouseClicked(e -> {
-//            if (drawer.isHidden() || drawer.isHiding()) {
-//                drawer.open();
-//            } else {
-//                drawer.close();
-//            }
+//        // init the title hamburger icon
+//        drawer.setOnDrawerOpening(e -> {
+//            final Transition animation = titleBurger.getAnimation();
+//            animation.setRate(1);
+//            animation.play();
 //        });
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ui/popup/MainPopup.fxml"));
-        loader.setController(new demos.gui.main.MainController.InputController());
-        toolbarPopup = new JFXPopup(loader.load());
-
-        optionsBurger.setOnMouseClicked(e -> toolbarPopup.show(optionsBurger,
-                JFXPopup.PopupVPosition.TOP,
-                JFXPopup.PopupHPosition.RIGHT,
-                -12,
-                15));
+//        drawer.setOnDrawerClosing(e -> {
+//            final Transition animation = titleBurger.getAnimation();
+//            animation.setRate(-1);
+//            animation.play();
+//        });
+////        titleBurgerContainer.setOnMouseClicked(e -> {
+////            if (drawer.isHidden() || drawer.isHiding()) {
+////                drawer.open();
+////            } else {
+////                drawer.close();
+////            }
+////        });
+//
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ui/popup/MainPopup.fxml"));
+//        loader.setController(new demos.gui.main.MainController.InputController());
+//        toolbarPopup = new JFXPopup(loader.load());
+//
+//        optionsBurger.setOnMouseClicked(e -> toolbarPopup.show(optionsBurger,
+//                JFXPopup.PopupVPosition.TOP,
+//                JFXPopup.PopupHPosition.RIGHT,
+//                -12,
+//                15));
 
         // create the inner flow and content
         context = new ViewFlowContext();
@@ -88,15 +89,14 @@ public class MainController {
         final FlowHandler flowHandler = innerFlow.createHandler(context);
         context.register("ContentFlowHandler", flowHandler);
         context.register("ContentFlow", innerFlow);
-        final Duration containerAnimationDuration = Duration.millis(320);
-        drawer.setContent(flowHandler.start(new ExtendedAnimatedFlowContainer(containerAnimationDuration, SWIPE_LEFT)));
+        drawer.setContent(flowHandler.start());
         context.register("ContentPane", drawer.getContent().get(0));
 
         // side controller will add links to the content flow
-        Flow sideMenuFlow = new Flow(SideMenuController.class);
-        final FlowHandler sideMenuFlowHandler = sideMenuFlow.createHandler(context);
-        drawer.setSidePane(sideMenuFlowHandler.start(new ExtendedAnimatedFlowContainer(containerAnimationDuration,
-                SWIPE_LEFT)));
+//        Flow sideMenuFlow = new Flow(SideMenuController.class);
+//        final FlowHandler sideMenuFlowHandler = sideMenuFlow.createHandler(context);
+//        drawer.setSidePane(sideMenuFlowHandler.start(new ExtendedAnimatedFlowContainer(containerAnimationDuration,
+//                SWIPE_LEFT)));
     }
 
     public static final class InputController {

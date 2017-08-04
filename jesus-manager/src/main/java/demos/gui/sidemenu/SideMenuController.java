@@ -13,6 +13,7 @@ import io.datafx.controller.util.VetoException;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import ru.jesus.manager.MainTabController;
 
 import javax.annotation.PostConstruct;
 import java.util.Objects;
@@ -115,11 +116,12 @@ public class SideMenuController {
         bindNodeToController(popup, PopupController.class, contentFlow, contentFlowHandler);
         bindNodeToController(svgLoader, SVGLoaderController.class, contentFlow, contentFlowHandler);
         bindNodeToController(pickers, PickersController.class, contentFlow, contentFlowHandler);
-        bindNodeToController(masonry, MasonryPaneController.class, contentFlow, contentFlowHandler);
+        bindNodeToController(masonry, MainTabController.class, contentFlow, contentFlowHandler);
         bindNodeToController(scrollpane, ScrollPaneController.class, contentFlow, contentFlowHandler);
     }
 
     private void bindNodeToController(Node node, Class<?> controllerClass, Flow flow, FlowHandler flowHandler) {
+        System.out.println("ID: "+node.getId());
         flow.withGlobalLink(node.getId(), controllerClass);
     }
 

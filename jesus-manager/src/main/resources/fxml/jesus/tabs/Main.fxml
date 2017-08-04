@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.effect.*?>
+
+<?import ru.jesus.manager.tabs.Main?>
+<Main xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ru.jesus.manager.tabs.Main" >
+    <fx:define>
+        <fx:include source="Home.fxml" fx:id="homeContent" />
+        <fx:include source="About.fxml" fx:id="aboutContent" />
+
+    </fx:define>
+    <top>
+        <TabPane fx:id="tabpane" prefHeight="200.0" prefWidth="600.0">
+            <tabs>
+                <Tab text="HOME" fx:id="homeTab" content="$homeContent" closable="false" />
+                <Tab text="ABOUT" fx:id="aboutTab" content="$aboutContent" closable="false"/>
+            </tabs>
+        </TabPane>
+    </top>
+    <center>
+        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <tabs>
+                <Tab text="Untitled Tab 1">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                </Tab>
+                <Tab text="Untitled Tab 2">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</Main>

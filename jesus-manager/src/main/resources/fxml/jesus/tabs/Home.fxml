@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import ru.jesus.manager.tabs.Home?>
+<Home id="homeContent" xmlns:fx="http://javafx.com/fxml"
+      spacing="10" translateY="40" translateX="20" fx:controller="ru.jesus.manager.tabs.Home" >
+    <children>
+        <Label text="Add New Dock of Home" />
+        <Button text="Add !" onAction="#handleAction" />
+    </children>
+</Home>

@@ -10,6 +10,8 @@ import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -44,13 +46,14 @@ public class Main extends Application {
         // можно и так stage.getIcons().add(new Image("https://example.com/javaicon.png"));
         stage.getIcons().add(new Image("/img/icon.png"));
 
-        Flow flow = new Flow(MainController.class);
-        DefaultFlowContainer container = new DefaultFlowContainer();
-        flowContext = new ViewFlowContext();
-        flowContext.register("Stage", stage);
-        flow.createHandler(flowContext).start(container);
+//        Flow flow = new Flow(MainController.class);
+//        DefaultFlowContainer container = new DefaultFlowContainer();
+//        flowContext = new ViewFlowContext();
+//        flowContext.register("Stage", stage);
+//        flow.createHandler(flowContext).start(container);
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/jesus/tabs/Main.fxml"));
 
-        JFXDecorator decorator = new JFXDecorator(stage, container.getView());
+        JFXDecorator decorator = new JFXDecorator(stage, root);
         decorator.setCustomMaximize(true);
         Scene scene = new Scene(decorator, 1200, 850);
         final ObservableList<String> stylesheets = scene.getStylesheets();
