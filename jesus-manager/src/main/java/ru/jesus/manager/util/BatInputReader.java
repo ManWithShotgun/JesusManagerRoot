@@ -10,7 +10,8 @@ import java.io.InputStreamReader;
 public class BatInputReader extends Thread {
     private InputStreamReader is;
     private BufferedReader buffer;
-    private boolean isRead = true;
+    private boolean isRead = true, isBuff = false;
+    private String buffStr = "";
 
     BatInputReader(InputStreamReader is) {
         this.is = is;
@@ -27,10 +28,13 @@ public class BatInputReader extends Thread {
 
             int c;
             while (isRead) {
-                if(is.ready()) {
+                if (is.ready()) {
                     c = is.read();
                     //System.out.println(c + " : " + isRead);
                     System.out.write(c);
+                    if (isBuff) {
+                        buffStr += (char) c;
+                    }
                     //System.out.println(is.ready());
                 }
             }
@@ -53,8 +57,20 @@ public class BatInputReader extends Thread {
         System.out.println("STOP BatInputReader");
     }
 
-    public void destroyRead(){
+    public void destroyRead() {
         this.isRead = false;
+    }
+
+    public boolean isBuff() {
+        return isBuff;
+    }
+
+    public void setBuff(boolean buff) {
+        isBuff = buff;
+    }
+
+    public String getBuffStr() {
+        return buffStr;
     }
 
     /*

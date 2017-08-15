@@ -7,54 +7,71 @@ import java.io.*;
  */
 public class BatRunner extends Thread {
 
-    private Process process;
-    private final String dirBat;
-    private final String nameBat;
+    private final String ENCODE = "windows-1251";
+    //    private Process process;
+    private String dirBat;
+    private String nameBat;
+    private String[] command;
 
     public BatRunner(String dirBat, String nameBat) {
         this.dirBat = dirBat;
         this.nameBat = nameBat;
     }
 
+    public BatRunner(String[] command) {
+        this.command = command;
+    }
 
     @Override
     public void run() {
-        execBat("windows-1251");
+        if (command != null) {
+            execCommand();
+        } else {
+            execBat();
+        }
     }
 
     /**
      * Выполнить команду операционной системы
-     * @param szEncoding - кодировка, в которой выводится сообщение в консоль ОС
      */
-    private void execBat(String szEncoding){
+    private void execBat() {
+        ProcessBuilder pb = new ProcessBuilder(nameBat);
+        pb.redirectErrorStream(true);// если флаг ProcessBuilder.redirectErrorStream() выставлен в true, то stderr будет слит с stdout, и errors будет пуст.
+        pb.directory(new File(dirBat));
+        exec(pb);
+    }
+
+    private void execCommand() {
+        System.out.println("COMMAND");
+        ProcessBuilder pb = new ProcessBuilder(command);
+        pb.redirectErrorStream(true);// если флаг ProcessBuilder.redirectErrorStream() выставлен в true, то stderr будет слит с stdout, и errors будет пуст.
+        exec(pb);
+    }
+
+    private void exec(ProcessBuilder pb) {
         try {
-            ProcessBuilder pb = new ProcessBuilder(nameBat);
-            pb.redirectErrorStream(true);// если флаг ProcessBuilder.redirectErrorStream() выставлен в true, то stderr будет слит с stdout, и errors будет пуст.
-            pb.directory(new File(dirBat));
-            process = pb.start();
+            Process process = pb.start();
             System.out.println(process.getClass().getName());
-            BatInputReader outputGobbler = new BatInputReader(new InputStreamReader(process.getInputStream(), szEncoding));
+            BatInputReader outputGobbler = new BatInputReader(new InputStreamReader(process.getInputStream(), ENCODE));
             outputGobbler.start();
             try {
-                Thread.sleep(50000);
+                //вместо sleep надо ожидать клик
+                System.out.println("wait");
+                process.waitFor();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            //не закрывается сам процесс; завершает чтение с cmd
             outputGobbler.destroyRead();
             //FIXME-ilia: нелзя закрыть Login server. Закрывается только консоль. Надо либо послать ^C либо получить PID и убить процесс.
+            // сделать WinProcClose кототый будет закрывать процеес по определенному порту
 //            process.destroy();
 //            pb.directory();
 
 //            this.destroyBat();
-
+            System.out.println("STOP BatRunner");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("STOP BatRunner");
-    }
-
-    public void destroyBat(){
-        process.destroy();
-        System.out.println("DESTROY");
     }
 }

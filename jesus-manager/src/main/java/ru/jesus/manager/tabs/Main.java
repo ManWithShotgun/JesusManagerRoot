@@ -28,5 +28,9 @@ public class Main extends BorderPane implements Initializable{
 
         BatRunner batRunner = new BatRunner("D:\\Games\\LServerOut\\login", "start.bat");
         batRunner.start();
+
+
+//        BatRunner batRunner = new BatRunner(new String[]{"cmd.exe", "/C", "netstat", "-a", "-o", "|", "findstr", "1505"});
+//        batRunner.start();
     }
 }
